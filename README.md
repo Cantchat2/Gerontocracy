@@ -1,27 +1,37 @@
-# gerontocracy
+# Gerontocracy
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+## Zuerst herunterladen von:
 
-## Development server
+[NodeJS](https://nodejs.org/) Für Frontend Entwicklung  
+[PostgreSQL](https://www.postgresql.org/download/) Für Datenbank  
+[.Net Core SDK](https://dotnet.microsoft.com/download) Für Backend Entwicklung
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Einmalige weitere Vorbereitungen nachdem du ausgecheckt hast
 
-## Code scaffolding
+Connection String in der appsettings.Development.json einfügen  
+`Host=localhost;Port=5432;Database=<DEIN-DB-NAME>;Username=<DEIN-USER>;Password=<DEIN-PASSWORT>`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Deinen SendgridApi Code in der appsettings.json einfügen
 
-## Build
+## Vor dem Entwickeln folgendes ausführen
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Konsolenbefehl `set ASPNETCORE_ENVIRONMENT=Development` ausführen oder Umgebungsvariable setzen  
+Datenbank mit `dotnet ef database update` auf neuesten Stand bringen
 
-## Running unit tests
+## Während dem Entwickeln
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Konsolenbefehl `npm start` um Frontend Dev-Server zu starten - das Frontend aktualisiert sich beim Speichern von selbst.
 
-## Running end-to-end tests
+In Visual Studio wurde eine LaunchSettings.json mit SwaggerUI eingerichtet.
+Es reicht die Applikation im Debug-Modus mit F5 zu starten
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Für die Backend Devs
+Um eine Datenbankmigration anzulegen
 
-## Further help
+1. Entities bearbeiten
+2. `dotnet ef migrations add Migrationname` generiert eine Datenbank-Migration
+3. `dotnet ef database update` bringt eure Datenbank auf den neuesten Stand
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Build - zum Entwickeln ungeeignet, eher zum Testen, ob der Build-Server durchlaufen würde
+
+Konsolenbefehl `ng build --prod` baut das Frontend und legt das Resultat in den wwwroot-Ordner.
